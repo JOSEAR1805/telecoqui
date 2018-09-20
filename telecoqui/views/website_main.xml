@@ -1,0 +1,146 @@
+<odoo>
+   <data>
+        <template id="assets_frontend" inherit_id="website.assets_frontend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/telecoqui/static/src/css/select2.min.css"/>
+                <link rel="stylesheet" href="/telecoqui/static/src/css/style.css"/>
+
+                <script type="text/javascript" src="/telecoqui/static/src/js/sweetalert.min.js"></script>
+                <script type="text/javascript" src="/telecoqui/static/src/js/jquery.slimscroll.js"></script>
+                <script type="text/javascript" src="/telecoqui/static/src/js/select2.min.js"></script>
+                <script type="text/javascript" src="/telecoqui/static/src/js/telecoqui.js"></script>
+            </xpath>
+        </template>
+
+        <template id="homepage" name="Telecoqui">
+            <t t-call="website.layout">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-4 content-main-div1">
+                            <div class="row inner-content-product">
+                                <ul class="content-ul"></ul>
+                            </div>
+
+                            <div class="row inner-content-presupuesto">
+                                <div class="col-xs-12 inner-content-total">
+                                    <p class="base-p" >Base imponible : 0.00</p>
+                                    <p class="impuesto-p" >Impuestos : 0.00</p>
+                                    <p class="total-p" >Total : 0.00</p>
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-md-12 containerCalculadora">
+                                    <div class="col-md-4 sin-padding">
+                                        <div class="col-md-12 sin-padding">
+                                            <button type="button" class="btn btn_pay" data-toggle="modal" data-target="#generar">
+                                                <i class="fa fa-arrow-right"></i><br/>
+                                                <span>Generar</span>
+                                            </button>
+
+                                            <div class="modal fade" id="generar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <h4 class="modal-title">
+                                                                            Asignamiento de cliente - Cotización
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <button type="button" class="close pull-rigth" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">X</span>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div class="modal-body">
+                                                                <p>Para terminar la cotización debe seleccionar un cliente</p>
+
+                                                                <select class="js-example-basic-single" id="select-value" name="partner" style="width: 300px;">
+                                                                    <option value=""></option>
+                                                                    <t t-foreach="partners" t-as="partner">
+                                                                        <option t-att-value="partner.id">
+                                                                            <t t-esc="partner.name" />
+                                                                        </option>
+                                                                    </t>
+                                                                </select>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                                                                <button type="button" class="btn btn-primary onSubmitModal">Guardar</button>
+                                                            </div>
+
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 sin-padding">
+                                        <div class="col-md-12 sin-padding">
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="1" onclick="clickButton(1, 'num')">1</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="2" onclick="clickButton(2, 'num')">2</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="3" onclick="clickButton(3, 'num')">3</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number btn_select" id="cant" onclick="clickButton('cant', 'option')">Cant.</button></div>    
+                                        </div>
+                                        <div class="col-md-12 sin-padding">
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="4" onclick="clickButton(4, 'num')">4</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="5" onclick="clickButton(5, 'num')">5</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="6" onclick="clickButton(6, 'num')">6</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="impuesto" onclick="clickButton('impuesto', 'option')">Impto.</button></div>    
+                                        </div>
+                                        <div class="col-md-12 sin-padding">
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="7" onclick="clickButton(7, 'num')">7</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="8" onclick="clickButton(8, 'num')">8</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="9" onclick="clickButton(9, 'num')">9</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="precio" onclick="clickButton('precio', 'option')">Precio</button></div>    
+                                        </div>
+                                        <div class="col-md-12 sin-padding">
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="." onclick="clickButton('coma', 'coma')">.</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="0" onclick="clickButton(0, 'num')">0</button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="x" onclick="clickButton('', 'delete')"> <img src="/telecoqui/static/src/img/backspace.png"/> </button></div>
+                                            <div class="col-md-3 col-xs-3 sin-padding"><button class="btn btn_number" id="remove" disabled="true" onclick="clickButton('', 'remove')">Remove</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row inner-content-div">
+                                <div class="col-md-12">
+                                    <div class="product-list" t-foreach="products" t-as="product">
+                                        <span class="product-tag" t-att-id="product.id">
+                                            <div class="row product-imagen" style="text-align:center;">
+                                                <img  class="product-image-tag" t-attf-src="data:image/*;base64,{{product.image_medium}}"/>
+                                                <span class="price-tag" t-esc="product.list_price" />
+                                            </div>
+                                            <div class="row product-name">
+                                                <t t-esc="product.name"/>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" >
+                                <span></span>
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                </div>
+            </t>
+        </template>
+
+   </data>
+</odoo>
