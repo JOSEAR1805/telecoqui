@@ -1,0 +1,2 @@
+# telecoqui
+Modulo de telecoqui
