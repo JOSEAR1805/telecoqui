@@ -292,7 +292,10 @@ $(document).ready(function () {
 							success:function(data){
 							    swal("Se guardo exitosamente", {
 							        icon: "success"
-							    });
+								});
+								setTimeout(() => {
+									location.reload();
+								}, 2000);
 								
 							}
 							});
